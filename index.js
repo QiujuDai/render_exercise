@@ -64,7 +64,7 @@ const generateId = () => {
 app.post('/api/notes', (request, response) => {
   const body = request.body
   if(!body.content){
-    return response.status(400).json({error: 'content missing'})
+    response.status(400).json({error: 'content missing'})
   }
 
   const note = {
@@ -76,6 +76,22 @@ app.post('/api/notes', (request, response) => {
   notes = notes.concat(note)
   console.log(note)
   response.json(note)
+})
+
+app.put('/api/notes/:id', (request, response) => {
+  const id = request.params.id
+  const newNote = request.body
+  console.log('backend put!')
+  const notesId = notes.findIndex(note => note.id === id)
+  if(notesId !== -1){
+    const updatedNote = {... notes[notesId], important: newNote.important}
+    notes[notesId] = updatedNote
+    response.json(updatedNote)
+  }
+  else{
+    response.status(404).end()
+  }
+
 })
 
 // const PORT = 3001
