@@ -6,6 +6,7 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
+app.use(express.static('dist'))
 
 
 let notes = [
@@ -81,7 +82,6 @@ app.post('/api/notes', (request, response) => {
 app.put('/api/notes/:id', (request, response) => {
   const id = request.params.id
   const newNote = request.body
-  console.log('backend put!')
   const notesId = notes.findIndex(note => note.id === id)
   if(notesId !== -1){
     const updatedNote = {... notes[notesId], important: newNote.important}
