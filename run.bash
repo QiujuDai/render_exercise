@@ -1,0 +1,1 @@
+MONGODB_URI="mongodb+srv://fullstack:WZwN33axzOvO71lH@cluster0.elsq0lv.mongodb.net/noteApp?appName=Cluster0" npm run dev
